@@ -20,6 +20,11 @@ import webdemo.entidades.Usuario;
 //@WebServlet(urlPatterns = {"/usuarios/novo", "/usuarios/editar"})
 public class UsuarioServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 370391190002278430L;
+
 	@Override	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException {
@@ -67,5 +72,5 @@ public class UsuarioServlet extends HttpServlet {
 	
 	//TODO: Vou precisar tratar o método POST aqui para representar o envio do formulário de edição!
 	
-	private static final long serialVersionUID = 370391190002278430L;
+	//private static final long serialVersionUID = 370391190002278430L;
 }

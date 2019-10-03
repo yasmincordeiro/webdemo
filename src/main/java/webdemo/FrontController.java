@@ -21,7 +21,7 @@ import webdemo.entidades.Usuario;
 
 import static org.apache.commons.lang3.RegExUtils.removeFirst;
 
-@WebServlet("/usuarios/*")
+@WebServlet({"/usuarios/*", "/produtos/*"} )
 public class FrontController extends HttpServlet {
 
 	/**
@@ -47,6 +47,7 @@ public class FrontController extends HttpServlet {
 		//posição 0: Controller
 		//posição 1: Action
 		//posição 2: ID
+		
 		for(String param : urlParams)
 			response.getOutputStream().println("-" + param);
 		
@@ -72,6 +73,13 @@ public class FrontController extends HttpServlet {
 				controller.edit(id);
 			}
 			break;
+		case "show":
+			if(!Strings.isNullOrEmpty(idParam)) {
+				int id = Integer.parseInt(idParam);
+				controller.show(id);
+			}
+			break;
+		
 		default:
 			//TODO: 404, baby!
 			break;

@@ -17,7 +17,7 @@ import com.google.common.base.Strings;
 import webdemo.controllers.UsuariosController;
 import webdemo.entidades.Usuario;
 
-//@WebServlet("/usuarios")
+//@WebServlet(urlPatterns = { "/usuarios", "/batata" } )
 public class UsuariosServlet extends HttpServlet {
 
 	@Override	

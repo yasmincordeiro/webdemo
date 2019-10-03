@@ -6,14 +6,14 @@
 <head>
 	<c:import url="/WEB-INF/templates/common/_metatags.jsp" />
 	<c:import url="/WEB-INF/templates/common/_bootstrap_css.jsp" />
-	<title>Usuários</title>
+	<title>Produtos</title>
 </head>
 <body class="container">
-	<h1>Usuários</h1> 
+	<h1>Produtos</h1> 
 	
 	<c:if test="${param.success}">
 		<div class="alert alert-success" role="alert">
-		  Usuário criado com sucesso!
+		  Produto adicionado com sucesso!
 		</div>
 	</c:if>
 
@@ -21,27 +21,26 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">Nome</th>
-				<th scope="col">Sobrenome</th>
+				<th scope="col">Nome do Produto</th>
+				<th scope="col">Valor</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="usuario" items="${Usuarios}">
+			<c:forEach var="produto" items="${Produtos}">
 				<tr>
-					<th scope="row">${usuario.id}</th>
-					<td>${usuario.nome}</td>
-					<td>${usuario.sobrenome}</td>
+					<th scope="row">${produto.id}</th>
+					<td>${produto.nome}</td>
+					<td>${produto.valor}</td>
 					<td>
-						<a href="/usuarios/edit/${usuario.id}">Editar Usuário</a>
-						<a href="/usuarios/show/${usuario.id}">Mostrar Usuário</a>
+						<a href="/produtos/edit/${produto.id}">Editar Produto</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<a href="/usuarios/create" class="btn btn-primary">Criar</a>
+	<a href="/produtos/create" class="btn btn-primary">Criar Produto</a>
 	
 	<c:import url="/WEB-INF/templates/common/_bootstrap_js.jsp" />
 	

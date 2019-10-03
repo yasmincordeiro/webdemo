@@ -25,6 +25,30 @@
 				textoPlaceholder="Seu Sobrenome"
 				idCampo="sobrenome-input" nomeCampo="sobrenome" />	
 		</div>
+		<div class="form-group">
+			<minha:validatedinputtext rotulo="Idade" valor="${param.idade}"
+				erroValidacao="${IdadeInvalido}" invalido="${empty IdadeInvalido}"
+				textoPlaceholder="Idade"
+				idCampo="idade-input" nomeCampo="idade" />	
+		</div>
+		<div class="form-group">
+			<minha:validatedinputtext rotulo="Sexo" valor="${param.sexo}"
+				erroValidacao="${sexoInvalido}" invalido="${empty sexoInvalido}"
+				textoPlaceholder="Sexo"
+				idCampo="sexo-input" nomeCampo="sexo" />	
+		</div>
+		<div class="form-group">
+			<minha:validatedinputtext rotulo="Telefone" valor="${param.telefone}"
+				erroValidacao="${telefoneInvalido}" invalido="${empty telefoneInvalido}"
+				textoPlaceholder="Telefone"
+				idCampo="telefone-input" nomeCampo="telefone" />	
+		</div>
+		<div class="form-group">
+			<minha:validatedinputtext rotulo="E-mail" valor="${param.email}"
+				erroValidacao="${emailInvalido}" invalido="${empty emailInvalido}"
+				textoPlaceholder="E-mail"
+				idCampo="email-input" nomeCampo="email" />	
+		</div>
 		<a href="/usuarios" class="btn btn-danger">Cancelar</a>
 		<button type="submit" class="btn btn-primary">Salvar</button>
 	</form>

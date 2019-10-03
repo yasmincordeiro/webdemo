@@ -28,8 +28,15 @@ public class UsuariosController extends Controller {
 	}
 	
 	@Override
-	public void show(int id) {
-		//TODO: Implementar
+	public void show(int id) throws ServletException, IOException{
+		
+		Usuario usuario = Usuario.GetById(id);
+		
+		getRequest().setAttribute("usuario", usuario);
+			
+		getRequest().getRequestDispatcher("/WEB-INF/templates/usuarios/exibir.jsp")
+			.forward(getRequest(), getResponse());
+
 	}
 	
 	@Override
@@ -44,8 +51,12 @@ public class UsuariosController extends Controller {
 		if(isValid(formData)) {
 			String nome = formData.get("nome");
 			String sobrenome = formData.get("sobrenome");
+			String idade = formData.get("idade");
+			String sexo = formData.get("sexo");
+			String telefone = formData.get("telefone");
+			String email = formData.get("email");
 			
-			Usuario usuario = new Usuario(nome, sobrenome);
+			Usuario usuario = new Usuario(nome, sobrenome, idade, sexo, telefone, email);
 			usuario.salvar();
 			
 			getResponse().sendRedirect("/usuarios?success=true");
@@ -72,15 +83,23 @@ public class UsuariosController extends Controller {
 		
 		String nome = formData.get("nome");
 		String sobrenome = formData.get("sobrenome");
+		String idade = formData.get("idade");
+		String sexo = formData.get("sexo");
+		String telefone = formData.get("telefone");
+		String email = formData.get("email");
 		
 		if(isValid(formData)) {
 			usuario.setNome(nome);
 			usuario.setSobrenome(sobrenome);
+			usuario.setIdade(idade);
+			usuario.setSexo(sexo);
+			usuario.setTelefone(telefone);
+			usuario.setEmail(email);
 			usuario.salvar();
 			
 			getResponse().sendRedirect("/usuarios?success=true");
 		}else {
-			Usuario usuarioInvalido = new Usuario(nome, sobrenome);
+			Usuario usuarioInvalido = new Usuario(nome, sobrenome, idade, sexo, telefone, email);
 			usuarioInvalido.setId(id);
 			getRequest().setAttribute("Usuario", usuario);
 			
@@ -102,6 +121,27 @@ public class UsuariosController extends Controller {
 			getRequest().setAttribute("SobrenomeInvalido", "O sobrenome é obrigatório!");
 			isValid = false;
 		}
+		
+		if(!formData.containsKey("idade") || formData.get("idade").isEmpty()) {
+			getRequest().setAttribute("IdadeInvalido", "A idade é obrigatória!");
+			isValid = false;
+		}
+		
+		if(!formData.containsKey("sexo") || formData.get("sexo").isEmpty()) {
+			getRequest().setAttribute("SexoInvalido", "O sexo é obrigatório!");
+			isValid = false;
+		}
+		
+		if(!formData.containsKey("telefone") || formData.get("telefone").isEmpty()) {
+			getRequest().setAttribute("TelefoneInvalido", "O telefone é obrigatório!");
+			isValid = false;
+		}
+		
+		if(!formData.containsKey("email") || formData.get("email").isEmpty()) {
+			getRequest().setAttribute("EmailInvalido", "O email é obrigatório!");
+			isValid = false;
+		}
+		
 				
 		return isValid;
 	}
